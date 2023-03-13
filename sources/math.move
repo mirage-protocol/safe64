@@ -8,18 +8,18 @@ module safe_u64::math {
 
     const EOVERFLOW: u64 = 64007;
 
-    // mulXdivY will multiply x values divided by y values
-    // mulXdivY_64 will attempt to cast the value back to u64
-
+    /// Convert u64 to u256
     public fun to256(x: u64): u256 {
         (x as u256)
     }
 
+    /// Convert u256 to u64, checking for overflow
     public fun to64(x: u256): u64 {
         assert!(x < 18446744073709551615, EOVERFLOW); // MAX_U64
         (x as u64)
     }
 
+    /// multiply to u64 into u256
     public fun mul(x: u64, y: u64): u256 {
         (x as u256) * (y as u256)
     }
@@ -54,6 +54,14 @@ module safe_u64::math {
 
     public fun mul3div2_64(a: u64, b: u64, c: u64, d: u64, e: u64): u64 {
         to64(mul3div2(a, b, c, d, e))
+    }
+
+    public fun mul3div3(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u256 {
+        mul3(a, b, c) / mul3(d, e, f)
+    }
+
+    public fun mul3div3_64(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u256 {
+        to64(mul3(a, b, c) / mul3(d, e, f))
     }
 
     public fun square(x: u64): u256 {
