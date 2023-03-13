@@ -1,6 +1,12 @@
 /// A library to prevent overflow when multiplying lots of u64 values
 module safe_u64::math {
-    const EOVERFLOW: u64 = 68943;
+    #[test_only]
+    const MAX_U64: u256 = 18446744073709551615;
+
+    #[test_only]
+    const MAX_U128: u256 = 340282366920938463463374607431768211455;
+
+    const EOVERFLOW: u64 = 64007;
 
     // mulXdivY will multiply x values divided by y values
     // mulXdivY_64 will attempt to cast the value back to u64
@@ -30,10 +36,6 @@ module safe_u64::math {
         to64(muldiv(x, y, z))
     }
 
-    public fun muldiv2(x: u64, y: u64, z: u64): u256 {
-        (x as u256) / mul(y, z)
-    }
-
     public fun mul3(x: u64, y: u64, z: u64): u256 {
         mul(x, y) * (z as u256)
     }
@@ -56,5 +58,36 @@ module safe_u64::math {
 
     public fun square(x: u64): u256 {
         mul(x, x)
+    }
+
+    public fun square_64(x: u64): u64 {
+        to64(square(x))
+    }
+
+    #[test]
+    fun test_muldiv_64() {
+        let big = ((MAX_U64 - 1) as u64);
+        assert!(square(big) > MAX_U64, 1);
+        
+        let x = muldiv_64(big, big, big);
+        assert!(x == big, 1);
+    }
+
+    #[test]
+    fun test_mul3div_64() {
+        let big = (((MAX_U64 - 1) / 10) as u64);
+        assert!(square(big) > MAX_U64, 1);
+
+        let x = mul3div_64(big, big, 10, big);
+        assert!(x == 10 * big, 1);
+    }
+
+    #[test]
+    fun test_mul3div2_64() {
+        let big = ((MAX_U64 - 1) as u64);
+        assert!(square(big) > MAX_U64, 1);
+
+        let x = mul3div2_64(big, big, big, big, big);
+        assert!(x == big, 1);
     }
 }
