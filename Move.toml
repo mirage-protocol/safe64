@@ -10,4 +10,4 @@ subdir = "aptos-move/framework/move-stdlib"
 addr_subst = { std = "0x1" }
 
 [addresses]
-safe_u64 = "_"
+safe_u64 = "0xa90a92e8e358fae87489a01dd1970572ca8316a66827cff3147743bca5ce2a63"
