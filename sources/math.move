@@ -60,10 +60,6 @@ module safe_u64::math {
         mul(x, x)
     }
 
-    public fun square_64(x: u64): u64 {
-        to64(square(x))
-    }
-
     #[test]
     fun test_muldiv_64() {
         let big = ((MAX_U64 - 1) as u64);
