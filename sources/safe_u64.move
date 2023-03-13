@@ -1,5 +1,5 @@
 /// A library to prevent overflow when multiplying lots of u64 values
-module safe_u64::math {
+module safe_u64::safe_u64 {
     #[test_only]
     const MAX_U64: u256 = 18446744073709551615;
 
