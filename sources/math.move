@@ -60,7 +60,7 @@ module safe_u64::math {
         mul3(a, b, c) / mul3(d, e, f)
     }
 
-    public fun mul3div3_64(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u256 {
+    public fun mul3div3_64(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u64 {
         to64(mul3(a, b, c) / mul3(d, e, f))
     }
 
