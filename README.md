@@ -12,3 +12,7 @@ In many situations we want to multiply and divide many `u64` values, e.g. coin b
 `mulXdivY` will multiply `X` values and divide `Y` values:
 
 `mul3div2_64(a, b, c, d, e): u64 -> abc/de`
+
+## License
+
+MIT
