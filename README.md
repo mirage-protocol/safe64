@@ -6,13 +6,16 @@ In many situations we want to multiply and divide many `u64` values, e.g. coin b
 
 ## Features
 
-`muldiv(x, y, z): u256 -> xy/z`
-
-`muldiv_64(x, y, x): u64 -> xy/z`
+```sol
+muldiv(x, y, z): u256 -> xy / z
+muldiv_64(x, y, x): u64 -> xy / z
+```
 
 `mulXdivY` will multiply `X` values and divide `Y` values:
 
-`mul3div2_64(a, b, c, d, e): u64 -> abc/de`
+```sol
+mul3div2_64(a, b, c, d, e): u64 -> abc / de
+```
 
 ## License
 
