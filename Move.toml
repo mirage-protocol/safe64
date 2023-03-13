@@ -1,0 +1,13 @@
+[package]
+name = 'SafeU64'
+version = '1.0.0'
+upgrade_policy = "immutable"
+
+[dev-dependencies.MoveStdlib]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "main"
+subdir = "aptos-move/framework/move-stdlib"
+addr_subst = { std = "0x1" }
+
+[addresses]
+safe_u64 = "_"
