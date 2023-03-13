@@ -7,6 +7,7 @@ In many situations we want to multiply and divide many `u64` values, e.g. coin b
 ## Features
 
 `muldiv(x, y, z): u256 -> xy/z`
+
 `muldiv_64(x, y, x): u64 -> xy/z`
 
 `mulXdivY` will multiply `X` values and divide `Y` values:
