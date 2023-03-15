@@ -1,11 +1,7 @@
 /// A library to prevent overflow when multiplying lots of u64 values
 module safe_u64::safe_u64 {
-    #[test_only]
-    const MAX_U64: u256 = 18446744073709551615;
 
-    #[test_only]
-    const MAX_U128: u256 = 340282366920938463463374607431768211455;
-
+    /// Casting back to u64 failed
     const EOVERFLOW: u64 = 64007;
 
     /// Convert u64 to u256
@@ -15,7 +11,7 @@ module safe_u64::safe_u64 {
 
     /// Convert u256 to u64, checking for overflow
     fun to64(x: u256): u64 {
-        assert!(x < 18446744073709551615, EOVERFLOW); // MAX_U64
+        assert!(x < 18446744073709551615, EOVERFLOW); // < MAX_U64
         (x as u64)
     }
 
@@ -72,6 +68,16 @@ module safe_u64::safe_u64 {
     public fun square(x: u64): u256 {
         mul(x, x)
     }
+
+    ////////////////////////////////////////////////////////////
+    //                        TESTING                         //
+    ////////////////////////////////////////////////////////////
+
+    #[test_only]
+    const MAX_U64: u256 = 18446744073709551615;
+
+    #[test_only]
+    const MAX_U128: u256 = 340282366920938463463374607431768211455;
 
     #[test]
     fun test_muldiv_64() {
