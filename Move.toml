@@ -5,7 +5,7 @@ upgrade_policy = "immutable"
 
 [dev-dependencies.MoveStdlib]
 git = "https://github.com/aptos-labs/aptos-core.git"
-rev = "30468f189bd216f4b0f0a29c937bf024a6c9fbeb"
+rev = "main"
 subdir = "aptos-move/framework/move-stdlib"
 addr_subst = { std = "0x1" }
 
