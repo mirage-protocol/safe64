@@ -1,4 +1,4 @@
-# SafeU64
+# Safe64
 
 A pure move library allowing for safe multiplication and division of multiple `u64` values without overflow.
 
@@ -21,7 +21,7 @@ mul3div2_64(a, b, c, d, e): u64 -> abc / de
 Add to `Move.toml`:
 
 ```toml
-[dependencies.SafeU64]
+[dependencies.Safe64]
 git = "https://github.com/mirage-protocol/safe64.git"
 rev = "main"
 ```
