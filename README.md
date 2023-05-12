@@ -7,7 +7,6 @@ In many situations we want to multiply and divide many `u64` values, e.g. coin b
 ## Features
 
 ```rust
-muldiv(x, y, z): u256 -> xy / z
 muldiv_64(x, y, x): u64 -> xy / z
 ```
 
@@ -23,28 +22,28 @@ Add to `Move.toml`:
 
 ```toml
 [dependencies.SafeU64]
-git = "https://github.com/mirage-protocol/safe_u64.git"
+git = "https://github.com/mirage-protocol/safe64.git"
 rev = "main"
 ```
 
 And then use in code:
 
 ```rust
-use safe_u64::safe_u64;
+use safe64::safe64;
 
 ...
 
 // big_u64 * big_u64 > MAX_U64
-let big_u64: u64 = ... ;
+let big_u64: u64 = MAX_U64;
 
 // safely multiply and divide many "big" u64 values
-let a: u64 = safe_u64::muldiv_64(big_u64, big_u64, big_u64);
-let b: u64 = safe_u64::mul3div2_64(
+let a: u64 = safe64::muldiv_64(big_u64, big_u64, big_u64);
+let b: u64 = safe64::mul3div2_64(
     big_u64,
     big_u64,
     1000,
     big_u64,
-    100000
+    big_u64
 )
 ```
 
