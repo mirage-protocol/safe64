@@ -1,6 +1,6 @@
 [package]
 name = 'Safe64'
-version = '1.3.0'
+version = '1.4.0'
 upgrade_policy = "immutable"
 
 [dependencies.MoveStdlib]
@@ -9,4 +9,4 @@ rev = "main"
 subdir = "aptos-move/framework/move-stdlib"
 
 [addresses]
-safe64 = "0x68c1fa58260483f243df9d1846cbd5e91fb970417816f68026f080aae0f85d14"
+safe64 = "0xb300848fb3adcc202c6858bf70ed293e2838f634f85b17d8c597643dc6abfe13"
