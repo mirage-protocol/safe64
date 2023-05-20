@@ -13,7 +13,7 @@ module safe64::safe64 {
     }
 
     /// Multiply, divide and cast
-    public inline fun muldiv_64(x: u64, y: u64, z: u64): u64 {
+    public fun muldiv_64(x: u64, y: u64, z: u64): u64 {
         ((x as u128) * (y as u128) / (z as u128) as u64)
     }
 
@@ -23,7 +23,7 @@ module safe64::safe64 {
     }
 
     /// Multiply and divide 2
-    public inline fun muldiv2_64(a: u64, b: u64, c: u64, d: u64): u64 {
+    public fun muldiv2_64(a: u64, b: u64, c: u64, d: u64): u64 {
         ((a as u128) * (b as u128) / ((c as u128) * (d as u128)) as u64)
     }
 
@@ -40,7 +40,7 @@ module safe64::safe64 {
 
     /// Multiply 3, divide and cast
     /// For 3 we cast to u256 since MAX_U64^3 overflows u128
-    public inline fun mul3div_64(a: u64, b: u64, c: u64, d: u64): u64 {
+    public fun mul3div_64(a: u64, b: u64, c: u64, d: u64): u64 {
         (((a as u256) * (b as u256) * (c as u256)) / (d as u256) as u64)
     }
 
@@ -50,7 +50,7 @@ module safe64::safe64 {
     }
 
     /// Multiply 3, divide 2 and cast
-    public inline fun mul3div2_64(a: u64, b: u64, c: u64, d: u64, e: u64): u64 {
+    public fun mul3div2_64(a: u64, b: u64, c: u64, d: u64, e: u64): u64 {
         (((a as u256) * (b as u256) * (c as u256)) / ((d as u256) * (e as u256)) as u64)
     }
 
@@ -60,7 +60,7 @@ module safe64::safe64 {
     }
 
     /// Multiply 3, divide 3 and cast
-    public inline fun mul3div3_64(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u64 {
+    public fun mul3div3_64(a: u64, b: u64, c: u64, d: u64, e: u64, f: u64): u64 {
        (((a as u256) * (b as u256) * (c as u256)) / ((d as u256) * (e as u256) * (f as u256)) as u64)
     }
 
