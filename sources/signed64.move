@@ -45,6 +45,11 @@ module safe64::signed64 {
         }
     }
 
+    // subs b from a, returns a new one
+    public fun sub(a: Signed64, b: Signed64): Signed64 {
+        add(a, new(b.magnitude, !b.negative))
+    }
+
     public fun get_is_negative(i: &Signed64): bool {
         i.negative
     }
@@ -124,6 +129,72 @@ module safe64::signed64 {
         let a = new(2, true);
         let b = new(2, false);
         let c = add(a, b); // -2 + 2 = 0
+        // 0 has negative flag set to false
+        assert!(get_magnitude_if_positive(&c) == 0, 1);
+    }
+
+    #[test]
+    fun test_sub_both_positive_result_negative() {
+        let a = new(1, false);
+        let b = new(3, false);
+        let c = sub(a, b);// 1 - 3 = -2
+        assert!(get_magnitude_if_negative(&c) == 2, 1);
+    }
+
+    #[test]
+    fun test_sub_both_positive_result_positive() {
+        let a = new(3, false);
+        let b = new(1, false);
+        let c = sub(a, b);// 3 - 1 = 2
+        assert!(get_magnitude_if_positive(&c) == 2, 1);
+    }
+
+    #[test]
+    fun test_sub_both_negative_result_positive() {
+        let a = new(1, true);
+        let b = new(3, true);
+        let c = sub(a, b);// -1 - -3 = 2
+        assert!(get_magnitude_if_positive(&c) == 2, 1);
+    }
+
+    #[test]
+    fun test_sub_both_negative_result_negative() {
+        let a = new(3, true);
+        let b = new(1, true);
+        let c = sub(a, b);// -3 - -1 = -2
+        assert!(get_magnitude_if_negative(&c) == 2, 1);
+    }
+
+    #[test]
+    fun test_sub_mixed_result_negative() {
+        let a = new(1, true);
+        let b = new(3, false);
+        let c = sub(a, b); // -1 - 3 = -4
+        assert!(get_magnitude_if_negative(&c) == 4, 1);
+    }
+
+    #[test]
+    fun test_sub_mixed_result_positive() {
+        let a = new(3, false);
+        let b = new(5, true);
+        let c = sub(a, b); // 3 - -5 = 8
+        assert!(get_magnitude_if_positive(&c) == 8, 1);
+    }    
+    
+    #[test]
+    fun test_sub_positive_result_zero() {
+        let a = new(2, false);
+        let b = new(2, false);
+        let c = sub(a, b); // 2 - 2 = 0
+        // 0 has negative flag set to false
+        assert!(get_magnitude_if_positive(&c) == 0, 1);
+    }
+
+    #[test]
+    fun test_sub_negative_result_zero() {
+        let a = new(2, true);
+        let b = new(2, true);
+        let c = sub(a, b); // -2 - -2 = 0
         // 0 has negative flag set to false
         assert!(get_magnitude_if_positive(&c) == 0, 1);
     }
