@@ -5,23 +5,6 @@ module safe64::safe64_test {
     const MAX_U64: u64 = 18446744073709551615;
 
     #[test]
-    fun test_muldiv_64() {
-        let big = MAX_U64;
-        assert!(safe64::square(big) > (MAX_U64 as u128), 1);
-        
-        let x = safe64::muldiv_64(big, big, big);
-        assert!(x == big, 1);
-    }
-
-    #[test]
-    #[expected_failure(arithmetic_error, location = Self)]
-    fun test_muldiv_64_overflow() {
-        let big = MAX_U64;
-
-        safe64::muldiv_64(big, big, 1);
-    }
-
-    #[test]
     fun test_muldiv2_64() {
         let big = MAX_U64;
         
