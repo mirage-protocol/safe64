@@ -1,10 +1,5 @@
 /// copied and modified from https://github.com/pyth-network/pyth-crosschain/blob/main/target_chains/aptos/contracts/sources/i64.move
 module safe64::i64 {
-
-    const MAX_POSITIVE_MAGNITUDE: u64 = (1 << 63) - 1;
-    const MAX_NEGATIVE_MAGNITUDE: u64 = (1 << 63);
-
-    const EMAGNITUDE_TOO_LARGE: u64 = 4500;
     const ENEGATIVE_VALUE: u64 = 4501;
     const EPOSITIVE_VALUE: u64 = 4502;
 
@@ -21,13 +16,6 @@ module safe64::i64 {
     }
 
     public fun new(magnitude: u64, negative: bool): I64 {
-        let max_magnitude = MAX_POSITIVE_MAGNITUDE;
-        if (negative) {
-            max_magnitude = MAX_NEGATIVE_MAGNITUDE;
-        };
-        assert!(magnitude <= max_magnitude, EMAGNITUDE_TOO_LARGE);
-
-
         // Ensure we have a single zero representation: (0, false).
         // (0, true) is invalid.
         if (magnitude == 0) {
@@ -69,29 +57,6 @@ module safe64::i64 {
     public fun get_magnitude_if_negative(in: &I64): u64 {
         assert!(in.negative, EPOSITIVE_VALUE);
         in.magnitude
-    }
-
-    fun parse_magnitude(from: u64, negative: bool): u64 {
-        // If positive, then return the input verbatamin
-        if (!negative) {
-            return from
-        };
-
-        // Otherwise convert from two's complement by inverting and adding 1
-        let inverted = from ^ 0xFFFFFFFFFFFFFFFF;
-        inverted + 1
-    }
-
-    #[test]
-    #[expected_failure(abort_code = 4500, location = safe64::i64)]
-    fun test_magnitude_too_large_positive() {
-        new(0x8000000000000000, false);
-    }
-
-    #[test]
-    #[expected_failure(abort_code = 4500, location = safe64::i64)]
-    fun test_magnitude_too_large_negative() {
-        new(0x8000000000000001, true);
     }
 
     #[test]
