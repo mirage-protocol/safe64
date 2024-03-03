@@ -47,7 +47,8 @@ module safe64::signed64 {
 
     // subs b from a, returns a new one
     public fun sub(a: Signed64, b: Signed64): Signed64 {
-        add(a, new(b.magnitude, !b.negative))
+        b.negative = !b.negative;
+        add(a, b)
     }
 
     public fun get_is_negative(i: &Signed64): bool {
