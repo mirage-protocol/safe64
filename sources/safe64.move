@@ -12,11 +12,6 @@ module safe64::safe64 {
          (x as u128) * (y as u128) / (z as u128)
     }
 
-    /// Multiply, divide and cast
-    public inline fun muldiv_64(x: u64, y: u64, z: u64): u64 {
-        ((x as u128) * (y as u128) / (z as u128) as u64)
-    }
-
     /// Multiply and divide 2
     public inline fun muldiv2(a: u64, b: u64, c: u64, d: u64): u128 {
          (a as u128) * (b as u128) / ((c as u128) * (d as u128))
