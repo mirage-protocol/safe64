@@ -15,6 +15,10 @@ module safe64::signed64 {
         magnitude: u64,
     }
 
+    public fun zero(): Signed64 {
+        new(0, false)
+    }
+
     public fun new(magnitude: u64, negative: bool): Signed64 {
         // Ensure we have a single zero representation: (0, false).
         // (0, true) is invalid.
