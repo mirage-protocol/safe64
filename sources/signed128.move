@@ -58,7 +58,7 @@ module safe64::signed128 {
                 (b, a)
             };
 
-            new(larger.magnitude - smaller.magnitude, larger.negative && !smaller.negative)
+            new(larger.magnitude - smaller.magnitude, larger.negative)
         }
     }
 
