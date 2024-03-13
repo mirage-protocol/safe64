@@ -19,6 +19,10 @@ module safe64::signed64 {
         new(0, false)
     }
 
+    public fun is_zero(in: &Signed64): bool {
+        !in.negative && in.magnitude == 0
+    }
+
     public fun new(magnitude: u64, negative: bool): Signed64 {
         // Ensure we have a single zero representation: (0, false).
         // (0, true) is invalid.
@@ -67,6 +71,16 @@ module safe64::signed64 {
     public fun get_magnitude_if_negative(in: &Signed64): u64 {
         assert!(in.negative, EPOSITIVE_VALUE);
         in.magnitude
+    }
+
+    #[test]
+    fun test_zero() {
+        let zero = zero();
+        assert!(!get_is_negative(&zero), 1);
+        assert!(get_magnitude_if_positive(&zero) == 0, 1);
+        assert!(is_zero(&zero), 1);
+        let one = add(zero, new(1, false));
+        assert!(!is_zero(&one), 1);
     }
 
     #[test]
