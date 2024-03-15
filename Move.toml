@@ -9,4 +9,7 @@ rev = "main"
 subdir = "aptos-move/framework/move-stdlib"
 
 [addresses]
+safe64 = "_"
+
+[dev-addresses]
 safe64 = "0x31628a9cf7fceb03c98552cfbe8ee3b829dfab1afa3fd95352572c787800a11d"
