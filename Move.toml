@@ -12,4 +12,4 @@ subdir = "aptos-move/framework/move-stdlib"
 safe64 = "_"
 
 [dev-addresses]
-safe64 = "3000"
+safe64 = "0x3000"
