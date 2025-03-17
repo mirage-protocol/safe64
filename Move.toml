@@ -4,9 +4,9 @@ version = '1.2.0'
 upgrade_policy = "immutable"
 
 [dependencies.MoveStdlib]
-git = "https://github.com/aptos-labs/aptos-core.git"
+git = "https://github.com/aptos-labs/aptos-framework.git"
 rev = "aptos-release-v1.16"
-subdir = "aptos-move/framework/move-stdlib"
+subdir = "move-stdlib/"
 
 [addresses]
 safe64 = "_"
